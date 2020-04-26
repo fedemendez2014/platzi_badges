@@ -15,16 +15,15 @@ class Badge extends Component {
         </div>
         <div className="Badge__section-name">
           <img className="Badge__avatar" alt="Avatar"
-            src="https://static.platzi.com/media/avatars/avatars/fedemendez2014_408bd
-                  1e4-89a7-480e-b911-ef51b0b79de8.png"
+            src={this.props.avatarUrl}
           />
           <h1>
-            Federico <br /> Méndez
+            {this.props.firstName} <br /> {this.props.lastName}
           </h1>
         </div>
         <div className="Badge__section-info">
-          <h3>Software developer</h3>
-          <div>@fede.mendez.395</div>
+          <h3>{this.props.jobTitle}</h3>
+          <div>@{this.props.twitter}</div>
         </div>
         <div className="Badge__footer">#PlatziConf</div>
       </div>
