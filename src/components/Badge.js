@@ -9,7 +9,7 @@ class Badge extends Component {
 
   render() {
     return (
-      <div className="Badge">
+      <React.Fragment className="Badge">
         <div className="Badge__header">
           <img src={logoConference} alt="Logo conference" />
         </div>
@@ -26,7 +26,7 @@ class Badge extends Component {
           <div>@{this.props.twitter}</div>
         </div>
         <div className="Badge__footer">#PlatziConf</div>
-      </div>
+      </React.Fragment>
     );
   }
 }
