@@ -4,6 +4,9 @@ import confLogo from '../assets/badge-header.svg';
 import BadgesList from '../components/BadgesList';
 import { Link } from 'react-router-dom';
 import api from '../api';
+import PageLoading from '../components/PageLoading';
+import PageError from '../components/PageError';
+import MiniLoader from '../components/MiniLoader';
 
 class Badges extends React.Component {
   state = {
@@ -14,6 +17,11 @@ class Badges extends React.Component {
 
   componentDidMount = () => {
     this.fetchData();
+    this.intervalId = setInterval(this.fetchData, 5000);
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.intervalId);
   }
 
   fetchData = async () => {
@@ -27,11 +35,11 @@ class Badges extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return 'Loading...';
+    if (this.state.loading && !this.state.data) {
+      return <PageLoading />;
     }
     if (this.state.error) {
-      return `Error: ${this.state.error.message}`;
+      return <PageError error={this.state.error} />
     }
     return (
       <div>
@@ -46,7 +54,7 @@ class Badges extends React.Component {
             </div>
           </div>
         </div>
-
+        {this.state.loading && <MiniLoader />}
         <div className="Badges__container">
           <div className="Badges__buttons">
             <Link to="/badges/new" className="btn btn-primary">

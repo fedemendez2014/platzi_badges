@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 
 class BadgeForm extends Component {
-    handleClick = event => {
-
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(this.state);
-    }
 
     render() {
         return (
             <div>
-                <h1>New Attendant</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.props.onSubmit}>
                     <div className="form-group">
                         <label>First Name</label>
                         <input className="form-control" type="text" name="firstName"
@@ -40,10 +31,10 @@ class BadgeForm extends Component {
                         <input className="form-control" type="text" name="twitter"
                             onChange={this.props.onChange} value={this.props.form.twitter} />
                     </div>
-                    <button className="btn btn-primary"
-                        onClick={this.handleClick}>
-                        Save
-                    </button>
+                    <button className="btn btn-primary">Save</button>
+                    {this.props.error && (
+                        <p className="text-danger">{this.props.error.message}</p>
+                    )}
                 </form>
             </div>
         );
